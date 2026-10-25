@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E6E28">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Planogramas">
+<title>Control Planogramas</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+  html, body { margin: 0; height: 100%; background: #1E6E28; overflow: hidden; }
+  #app { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; background: #f3f6f2;
+         padding-top: env(safe-area-inset-top); box-sizing: border-box; }
+  #off { display: none; position: fixed; inset: 0; color: #fff; font: 16px/1.4 system-ui, sans-serif;
+         text-align: center; padding: 40% 24px 0; }
+  #off img { width: 120px; border-radius: 28px; }
+  #off button { margin-top: 16px; min-height: 44px; padding: 0 20px; border: 0; border-radius: 22px; background: #fff; color: #1E6E28; font-weight: 600; }
+</style>
+</head>
+<body>
+<iframe id="app" title="Control Planogramas" allow="camera; clipboard-write" src="https://script.google.com/macros/s/AKfycbz5lDtGUxxKJnN2c816pTaq_s8D2LOzMJhvUuCdLYe9gHSp3otTff3U0eEYK-VQDt69rQ/exec"></iframe>
+<div id="off"><img src="icons/icon-192.png" alt="Totti"><p>Sin conexión. Revisa tu internet y vuelve a intentar.</p><button onclick="location.reload()">Reintentar</button></div>
+<script>
+  if (!navigator.onLine) { document.getElementById('app').style.display = 'none'; document.getElementById('off').style.display = 'block'; }
+  window.addEventListener('online', () => location.reload());
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
